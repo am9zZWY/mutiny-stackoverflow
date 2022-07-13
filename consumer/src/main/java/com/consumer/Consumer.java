@@ -28,8 +28,10 @@ public class Consumer {
         return Multi.createBy().replaying().ofMulti(this.sink);
     }
 
-    public Uni<List<HashMap<String, Long[]>>> getAvg() {
-        return Multi.createBy().replaying().ofMulti(this.sink).capDemandsTo(100L).collect().asList();
+    public Uni<HashMap<String, Long>> getAvg() {
+        return Multi.createBy().replaying().upTo(100).ofMulti(this.sink)
+                .collect().asList()
+                .map(this::toCompactTimes);
     }
 
     private HashMap<String, Long> toCompactTimes(List<HashMap<String, Long[]>> times) {
