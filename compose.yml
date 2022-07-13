@@ -1,0 +1,18 @@
+services:
+  producer:
+    build:
+      context: producer
+      dockerfile: /src/main/docker/Dockerfile.jvm
+    expose:
+      - "8080"
+    ports:
+      - "8080:8080"
+
+  consumer:
+    build:
+      context: consumer
+      dockerfile: /src/main/docker/Dockerfile.jvm
+    expose:
+      - "8081"
+    ports:
+      - "8081:8081"
