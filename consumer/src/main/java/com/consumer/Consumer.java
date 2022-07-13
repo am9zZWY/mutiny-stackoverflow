@@ -34,6 +34,12 @@ public class Consumer {
                 .map(this::toCompactTimes);
     }
 
+    /**
+     * Creates an average of all values.
+     *
+     * @param times HashMap containing keys and an array of times
+     * @return averaged HashMap of keys and times
+     */
     private HashMap<String, Long> toCompactTimes(List<HashMap<String, Long[]>> times) {
         int listLength = times.size();
         LOGGER.info(times);
